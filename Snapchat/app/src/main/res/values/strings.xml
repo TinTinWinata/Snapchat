@@ -7,4 +7,8 @@
     <string name="name">Name</string>
     <string name="time">Time</string>
     <string name="login">Login</string>
+    <string name="add_friend">Add Friend</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="search_friend">Search Friend</string>
 </resources>

@@ -1,5 +1,8 @@
 package com.example.snapchat;
 
+import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -8,13 +11,14 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.snapchat.adapter.FriendAdapter;
+import com.example.snapchat.database.DBOpenHelper;
 import com.example.snapchat.models.Friend;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
@@ -23,56 +27,47 @@ public class ChatFragment extends Fragment implements FriendAdapter.ProductClick
     public static ArrayList<Friend> friendList = new ArrayList<>();
     RecyclerView recycleView;
     FriendAdapter friendAdapter;
+    FloatingActionButton fabBtn;
+
 
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
 
-
     }
-
-    private void insertDummyData()
-    {
-        friendList.add(new Friend(1, "Justine", 30));
-        friendList.add(new Friend(2, "Vito Caris", 41));
-        friendList.add(new Friend(3, "Hady Gustianto", 23));
-        friendList.add(new Friend(4, "Jason", 43));
-        friendList.add(new Friend(5, "Renaldi Addison", 19));
-    }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-//        ViewGroup root = (ViewGroup) inflater.inflate(R.layout.fragment_chat, null);
-//        insertDummyData();
-//
-//        Log.d("Error", "Size :  " + friendList.size());
-//
-//        recycleView = (RecyclerView) root.findViewById(R.id.recycleView);
-//        recycleView.setLayoutManager(new LinearLayoutManager(getContext(),
-//                LinearLayoutManager.VERTICAL, false));
-//        friendAdapter = new FriendAdapter(friendList, this);
-//        recycleView.setAdapter(friendAdapter);
 
-        return inflater.inflate(R.layout.fragment_chat, container, false);
+        // Inflate the layout for this fragment
+
+        return inflater.inflate(R.layout.fragment_chat, container,  false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        insertDummyData();
+
+//        getProductDataFromDB();
         recycleView = view.findViewById(R.id.recycleView);
         recycleView.setLayoutManager(new LinearLayoutManager(getContext(),
                 LinearLayoutManager.VERTICAL, false));
         friendAdapter = new FriendAdapter(friendList, this);
         recycleView.setAdapter(friendAdapter);
+
+        fabBtn = (FloatingActionButton) getView().findViewById(R.id.fabBtnAdd);
+        fabBtn.setOnClickListener(x -> {
+            Intent newIntent = new Intent(this.getContext() , AddFriendActivity.class);
+            startActivity(newIntent);
+        });
+
     }
 
     @Override
     public void onResume() {
         super.onResume();
+//        getProductDataFromDB();
         friendAdapter.notifyDataSetChanged();
         recycleView.setAdapter(friendAdapter);
     }
@@ -81,4 +76,35 @@ public class ChatFragment extends Fragment implements FriendAdapter.ProductClick
     public void onProductClicked(int position) {
 
     }
+
+    void getProductDataFromDB()
+    {
+        friendList.clear();
+        SQLiteDatabase db = DBOpenHelper.getInstance(this.getContext()).getReadableDatabase();
+        Cursor cursor = db.query(
+                DBOpenHelper.FRIENDS,
+                new String[]{
+                        DBOpenHelper.ID,
+                        DBOpenHelper.NAME,
+                        DBOpenHelper.TIME
+                },
+                null,
+                null,
+                null,
+                null,
+                null
+        );
+        if(cursor.getCount() > 0)
+        {
+            cursor.moveToFirst();
+            do {
+            friendList.add(new Friend(
+                    cursor.getInt(cursor.getColumnIndexOrThrow(DBOpenHelper.ID)),
+                    cursor.getString(cursor.getColumnIndexOrThrow(DBOpenHelper.NAME)),
+                    cursor.getInt(cursor.getColumnIndexOrThrow(DBOpenHelper.TIME))
+            ));
+            }while(cursor.moveToNext());
+        }
+    }
+
 }

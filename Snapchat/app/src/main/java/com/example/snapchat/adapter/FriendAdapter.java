@@ -35,7 +35,7 @@ public class FriendAdapter extends RecyclerView.Adapter<FriendAdapter.MyViewHold
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         holder.tvName.setText(friendList.get(position).getName());
-        holder.tvTime.setText(friendList.get(position).getTime() + "");
+        holder.tvTime.setText(friendList.get(position).getTime() + " days");
     }
 
     @Override
