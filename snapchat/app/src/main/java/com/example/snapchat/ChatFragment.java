@@ -22,7 +22,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
-public class ChatFragment extends Fragment implements FriendAdapter.ProductClickListener{
+public class ChatFragment extends Fragment implements FriendAdapter.FriendClickListener{
 
     public static ArrayList<Friend> friendList = new ArrayList<>();
     RecyclerView recycleView;
@@ -49,7 +49,7 @@ public class ChatFragment extends Fragment implements FriendAdapter.ProductClick
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-//        getProductDataFromDB();
+        getProductDataFromDB();
         recycleView = view.findViewById(R.id.recycleView);
         recycleView.setLayoutManager(new LinearLayoutManager(getContext(),
                 LinearLayoutManager.VERTICAL, false));
@@ -67,14 +67,16 @@ public class ChatFragment extends Fragment implements FriendAdapter.ProductClick
     @Override
     public void onResume() {
         super.onResume();
-//        getProductDataFromDB();
+        getProductDataFromDB();
         friendAdapter.notifyDataSetChanged();
         recycleView.setAdapter(friendAdapter);
     }
 
     @Override
-    public void onProductClicked(int position) {
-
+    public void onFriendClicked(int position) {
+        Intent intent  = new Intent(this.getContext(), ChatDetailActivity.class);
+        intent.putExtra("friend", friendList.get(position));
+        startActivity(intent);
     }
 
     void getProductDataFromDB()
@@ -86,7 +88,8 @@ public class ChatFragment extends Fragment implements FriendAdapter.ProductClick
                 new String[]{
                         DBOpenHelper.ID,
                         DBOpenHelper.NAME,
-                        DBOpenHelper.TIME
+                        DBOpenHelper.TIME,
+                        DBOpenHelper.NUMBER
                 },
                 null,
                 null,
@@ -101,7 +104,8 @@ public class ChatFragment extends Fragment implements FriendAdapter.ProductClick
             friendList.add(new Friend(
                     cursor.getInt(cursor.getColumnIndexOrThrow(DBOpenHelper.ID)),
                     cursor.getString(cursor.getColumnIndexOrThrow(DBOpenHelper.NAME)),
-                    cursor.getInt(cursor.getColumnIndexOrThrow(DBOpenHelper.TIME))
+                    cursor.getInt(cursor.getColumnIndexOrThrow(DBOpenHelper.TIME)),
+                    cursor.getString(cursor.getColumnIndexOrThrow(DBOpenHelper.NUMBER))
             ));
             }while(cursor.moveToNext());
         }

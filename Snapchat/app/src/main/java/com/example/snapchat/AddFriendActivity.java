@@ -15,6 +15,7 @@ public class AddFriendActivity extends AppCompatActivity {
 
     Button btnAddFriend;
     EditText inpSearchFriend;
+    EditText inpPhoneNumber;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,15 +23,18 @@ public class AddFriendActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_friend);
         btnAddFriend = findViewById(R.id.btnAddFriend);
         inpSearchFriend = findViewById(R.id.inpSearchFriend);
+        inpPhoneNumber = findViewById(R.id.inpPhoneNumber);
 
         btnAddFriend.setOnClickListener(x -> {
             String friendName = inpSearchFriend.getText().toString();
             Integer friendTime = randomTime();
+            String friendNumber = inpPhoneNumber.getText().toString();
 
             SQLiteDatabase db = DBOpenHelper.getInstance(this).getWritableDatabase();
             ContentValues cv = new ContentValues();
             cv.put(DBOpenHelper.NAME, friendName);
             cv.put(DBOpenHelper.TIME, friendTime + "");
+            cv.put(DBOpenHelper.NUMBER, friendNumber);
             db.insert(DBOpenHelper.FRIENDS, null, cv);
 
             Intent newIntent = new Intent(this, MainActivity.class);

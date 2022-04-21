@@ -17,9 +17,9 @@ import java.util.ArrayList;
 
 public class FriendAdapter extends RecyclerView.Adapter<FriendAdapter.MyViewHolder> {
     private ArrayList<Friend> friendList;
-    private ProductClickListener listener;
+    private FriendClickListener listener;
 
-    public FriendAdapter(ArrayList<Friend> friendList, ProductClickListener listener) {
+    public FriendAdapter(ArrayList<Friend> friendList, FriendClickListener listener) {
         this.friendList = friendList;
         this.listener = listener;
     }
@@ -47,7 +47,7 @@ public class FriendAdapter extends RecyclerView.Adapter<FriendAdapter.MyViewHold
     static class MyViewHolder extends RecyclerView.ViewHolder{
         TextView tvName, tvTime;
         CardView cvFriend;
-        public MyViewHolder(@NonNull View itemView, ProductClickListener listener)
+        public MyViewHolder(@NonNull View itemView, FriendClickListener listener)
         {
          super(itemView);
          tvName = itemView.findViewById(R.id.tvName);
@@ -55,11 +55,11 @@ public class FriendAdapter extends RecyclerView.Adapter<FriendAdapter.MyViewHold
          cvFriend = itemView.findViewById(R.id.cvFriend);
 
          cvFriend.setOnClickListener(x -> {
-             listener.onProductClicked(getAdapterPosition());
+             listener.onFriendClicked(getAdapterPosition());
          });
         }
     }
-    public interface ProductClickListener{
-        void onProductClicked(int position);
+    public interface FriendClickListener{
+        void onFriendClicked(int position);
     }
 }

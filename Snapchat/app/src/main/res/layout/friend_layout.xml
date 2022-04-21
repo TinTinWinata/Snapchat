@@ -24,5 +24,6 @@
             android:layout_height="wrap_content"
             android:text="@string/time"
             android:textSize="15sp"/>
+
     </LinearLayout>
 </androidx.cardview.widget.CardView>

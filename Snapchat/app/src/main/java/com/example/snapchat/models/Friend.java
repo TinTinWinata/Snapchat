@@ -1,14 +1,38 @@
 package com.example.snapchat.models;
 
-public class Friend {
+import java.io.Serializable;
+import java.util.ArrayList;
+
+public class Friend implements Serializable {
     private int id;
     private String name;
     private int time;
+    private String phoneNumber;
+    private ArrayList<String> chatList;
 
-    public Friend(int id, String name, int time) {
+    public Friend(int id, String name, int time, String phoneNumber) {
         this.id = id;
         this.name = name;
         this.time = time;
+        this.phoneNumber = phoneNumber;
+    }
+
+    public void addChatList(String str)
+    {
+        chatList.add(str);
+    }
+
+    public ArrayList<String> getChatList()
+    {
+        return chatList;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public int getId() {

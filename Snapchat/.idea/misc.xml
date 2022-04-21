@@ -10,14 +10,17 @@
         <entry key="..\:/github/Snapchat/Snapchat/app/src/main/res/drawable/ic_baseline_photo_camera_24.xml" value="0.2095" />
         <entry key="..\:/github/Snapchat/Snapchat/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2095" />
         <entry key="..\:/github/Snapchat/Snapchat/app/src/main/res/layout/activity_add_friend.xml" value="0.20208333333333334" />
-        <entry key="..\:/github/Snapchat/Snapchat/app/src/main/res/layout/activity_chat_detail.xml" value="0.18802083333333333" />
+        <entry key="..\:/github/Snapchat/Snapchat/app/src/main/res/layout/activity_chat_detail.xml" value="0.14666666666666667" />
         <entry key="..\:/github/Snapchat/Snapchat/app/src/main/res/layout/activity_login.xml" value="0.14666666666666667" />
         <entry key="..\:/github/Snapchat/Snapchat/app/src/main/res/layout/activity_main.xml" value="0.13333333333333333" />
         <entry key="..\:/github/Snapchat/Snapchat/app/src/main/res/layout/activity_splash.xml" value="0.18" />
-        <entry key="..\:/github/Snapchat/Snapchat/app/src/main/res/layout/fragment_chat.xml" value="0.33" />
+        <entry key="..\:/github/Snapchat/Snapchat/app/src/main/res/layout/chat_layout.xml" value="0.22" />
+        <entry key="..\:/github/Snapchat/Snapchat/app/src/main/res/layout/chatlayout.xml" value="0.1359375" />
+        <entry key="..\:/github/Snapchat/Snapchat/app/src/main/res/layout/fragment_chat.xml" value="0.2508532423208191" />
         <entry key="..\:/github/Snapchat/Snapchat/app/src/main/res/layout/fragment_maps.xml" value="0.1431159420289855" />
         <entry key="..\:/github/Snapchat/Snapchat/app/src/main/res/layout/fragment_photo.xml" value="0.1431159420289855" />
         <entry key="..\:/github/Snapchat/Snapchat/app/src/main/res/layout/friend_layout.xml" value="0.33" />
+        <entry key="..\:/github/Snapchat/Snapchat/app/src/main/res/layout/toolbar.xml" value="0.14427083333333332" />
         <entry key="..\:/github/Snapchat/Snapchat/app/src/main/res/menu/bottom_menu.xml" value="0.17552083333333332" />
         <entry key="..\:/github/Snapchat/Snapchat/app/src/main/res/mipmap-anydpi-v26/snap_ic_launcher.xml" value="0.1265" />
       </map>

@@ -16,13 +16,13 @@ public class DBOpenHelper extends SQLiteOpenHelper {
     public final static String ID = "id";
     public final static String NAME = "name";
     public final static String TIME = "time";
+    public final static String NUMBER = "phoneNumber";
 
     private static DBOpenHelper db = null;
 
     private DBOpenHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
-//        SQLiteDatabase db = this.getWritableDatabase();
-        SQLiteDatabase db = new DBOpenHelper(context).getWritableDatabase();
+        onCreate(getWritableDatabase());
     }
     public static DBOpenHelper getInstance(Context context)
     {
@@ -32,10 +32,12 @@ public class DBOpenHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+        db.execSQL("DROP TABLE IF EXISTS " + FRIENDS);
         String query = String.format("CREATE TABLE "+ FRIENDS + "(" +
                 ID + " INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT," +
                 NAME + " TEXT NOT NULL," +
-                TIME + " TIME NOT NULL)");
+                TIME + " INTEGER NOT NULL," +
+                NUMBER + " TEXT NOT NULL)");
         Log.d("Query", query);
         db.execSQL(query);
 
