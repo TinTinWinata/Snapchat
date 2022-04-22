@@ -16,7 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.snapchat.adapter.FriendAdapter;
-import com.example.snapchat.database.DBOpenHelper;
+import com.example.snapchat.utility.DBOpenHelper;
 import com.example.snapchat.models.Friend;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 

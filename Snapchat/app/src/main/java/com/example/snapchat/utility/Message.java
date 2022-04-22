@@ -1,13 +1,11 @@
-package com.example.snapchat.database;
+package com.example.snapchat.utility;
 
 import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.telephony.SmsManager;
 
-import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-import androidx.core.content.PackageManagerCompat;
 
 public class Message {
 

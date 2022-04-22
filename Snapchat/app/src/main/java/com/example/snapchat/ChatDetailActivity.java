@@ -1,6 +1,5 @@
 package com.example.snapchat;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
@@ -8,16 +7,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.Manifest;
-import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.telephony.SmsManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.snapchat.database.Message;
+import com.example.snapchat.adapter.ChatAdapter;
+import com.example.snapchat.utility.Message;
 import com.example.snapchat.models.Friend;
 
 public class ChatDetailActivity extends AppCompatActivity {
@@ -28,6 +25,7 @@ public class ChatDetailActivity extends AppCompatActivity {
     Button btnSend;
     EditText inpMsg;
     RecyclerView rv;
+    ChatAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,29 +37,38 @@ public class ChatDetailActivity extends AppCompatActivity {
         init();
         setRecycleView();
 
-
         btnSend.setOnClickListener(x -> {
             String msg = inpMsg.getText().toString();
-
             sendSMS(msg);
             saveToChatList(msg);
+            inpMsg.setText("");
+            refreshActivity();
         });
+    }
 
+    public void refreshActivity()
+    {
+        finish();
+        startActivity(getIntent());
     }
 
     public void setRecycleView()
     {
-//        rv = findViewById(R.id.rvChat);
-//        rv.setLayoutManager(new LinearLayoutManager(getContext(),
-//                LinearLayoutManager.VERTICAL, false));
+        rv = findViewById(R.id.rvChat);
+        rv.setLayoutManager(new LinearLayoutManager(this,
+                LinearLayoutManager.VERTICAL, false));
 
-
+        adapter = new ChatAdapter(currFriend.getChatList());
+        rv.setAdapter(adapter);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+        adapter.notifyDataSetChanged();
+        rv.setAdapter(adapter);
     }
+
 
     public void init()
     {
@@ -90,7 +97,6 @@ public class ChatDetailActivity extends AppCompatActivity {
             Toast.makeText(this, "Failed to send Message", Toast.LENGTH_SHORT).show();
         }
 
-        inpMsg.setText("");
     }
 
     public void requestSMSPermission(){
@@ -102,7 +108,6 @@ public class ChatDetailActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
     }
-
 
 
     public void getFriend(){

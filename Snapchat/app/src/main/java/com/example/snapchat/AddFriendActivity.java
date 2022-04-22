@@ -9,7 +9,7 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.example.snapchat.database.DBOpenHelper;
+import com.example.snapchat.utility.DBOpenHelper;
 
 public class AddFriendActivity extends AppCompatActivity {
 

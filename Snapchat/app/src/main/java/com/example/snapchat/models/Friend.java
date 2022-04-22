@@ -15,6 +15,7 @@ public class Friend implements Serializable {
         this.name = name;
         this.time = time;
         this.phoneNumber = phoneNumber;
+        chatList = new ArrayList<String>();
     }
 
     public void addChatList(String str)
