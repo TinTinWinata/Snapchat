@@ -8,19 +8,53 @@
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="20dp"
+            android:backgroundTint="@color/grey"
+            android:src="@drawable/ic_baseline_videogame_asset_24"
+            app:borderWidth="0dp"
+            app:fabCustomSize="35dp"
+            app:tint="@color/black_grey" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="70dp"
+            android:backgroundTint="@color/grey"
+            android:src="@drawable/ic_baseline_search_24"
+            app:borderWidth="0dp"
+            app:fabCustomSize="35dp"
+            app:tint="@color/black_grey" />
+
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fabBtnAdd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_baseline_add_24"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="30dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="70dp"
             android:backgroundTint="@color/grey"
-            android:layout_marginTop="10dp"
-            app:fabCustomSize="25dp"
-            app:tint="@color/white"
+            android:src="@drawable/ic_baseline_add_24"
             app:borderWidth="0dp"
-            />
+            app:fabCustomSize="35dp"
+            app:tint="@color/black_grey" />
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="20dp"
+
+            android:backgroundTint="@color/grey"
+            android:src="@drawable/ic_baseline_chat_24"
+            app:borderWidth="0dp"
+            app:fabCustomSize="35dp"
+            app:tint="@color/black_grey" />
     </RelativeLayout>
 
     <LinearLayout
@@ -32,16 +66,14 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/chat"
-            android:textSize="20dp"
-            android:textColor="@color/black"
-            android:textAlignment="center"
-            android:gravity="center_horizontal"
             android:layout_gravity="center_vertical"
-            android:textStyle="bold"
-            android:padding="9dp"
             android:layout_marginTop="10dp"
-            />
+            android:gravity="center_horizontal"
+            android:padding="9dp"
+            android:text="@string/chat"
+            android:textColor="@color/black"
+            android:textSize="25dp"
+            android:textStyle="bold" />
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -52,7 +84,8 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycleView"
-                android:layout_width="match_parent"
+
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical" />
         </LinearLayout>

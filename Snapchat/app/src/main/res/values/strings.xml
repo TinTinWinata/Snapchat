@@ -12,4 +12,5 @@
     <string name="password">Password</string>
     <string name="search_friend">Search Friend</string>
     <string name="insert_phone_number">Insert Phone Number</string>
+    <string name="use_your_camera">Use Your Camera</string>
 </resources>
