@@ -22,7 +22,7 @@ public class DBOpenHelper extends SQLiteOpenHelper {
 
     private DBOpenHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
-        onCreate(getWritableDatabase());
+//        onCreate(getWritableDatabase());
     }
     public static DBOpenHelper getInstance(Context context)
     {
@@ -32,7 +32,7 @@ public class DBOpenHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("DROP TABLE IF EXISTS " + FRIENDS);
+//        db.execSQL("DROP TABLE IF EXISTS " + FRIENDS);
         String query = String.format("CREATE TABLE "+ FRIENDS + "(" +
                 ID + " INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT," +
                 NAME + " TEXT NOT NULL," +
